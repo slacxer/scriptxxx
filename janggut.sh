@@ -93,6 +93,7 @@ cd vnstat-2.6
 cd
 vnstat -u -i $NET
 sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+sed -i 's/Interface "'""""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat >/dev/null 2>&1
 /etc/init.d/vnstat restart >/dev/null 2>&1
@@ -100,6 +101,6 @@ rm -f /root/vnstat-2.6.tar.gz >/dev/null 2>&1
 rm -rf /root/vnstat-2.6 >/dev/null 2>&1
 
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
-yellow "Mina Twice Tercantik..."
+yellow "Lanjut.."
 sleep 3
 clear
