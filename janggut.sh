@@ -63,6 +63,7 @@ export IP=$( curl -s https://ipinfo.io/ip/ )
 
 # // Exporting Network Interface
 export NETWORK_IFACE="$(ip route show to default | awk '{print $5}')"
+NET=$(ip route show to default | awk '{print $5}');
 
 red='\e[1;31m'
 green='\e[1;32m'
