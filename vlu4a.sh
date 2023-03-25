@@ -64,26 +64,26 @@ echo -e "${GREEN}Starting Installation............${NC}"
 cd /root/
 # Installing ulimit Service
 
-rm -fr /etc/systemd/system/melimit.service.d
-rm -fr /etc/systemd/system/melimit.service
-rm -fr /usr/local/bin/melimit.sh
+rm -fr /etc/systemd/system/startup.service.d
+rm -fr /etc/systemd/system/startup.service
+rm -fr /usr/local/bin/startup.sh
 
-wget -q -O /usr/local/bin/melimit.sh "https://raw.githubusercontent.com/slacxer/scriptxxx/main/melimit.sh"
-chmod +x /usr/local/bin/melimit.sh
+wget -q -O /usr/local/bin/startup.sh "https://raw.githubusercontent.com/slacxer/scriptxxx/main/startup.sh"
+chmod +x /usr/local/bin/startup.sh
 
-cat <<EOF> /etc/systemd/system/melimit.service
+cat <<EOF> /etc/systemd/system/startup.service
 [Unit]
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/melimit.sh
+ExecStart=/usr/local/bin/startup.sh
 
 [Install]
 WantedBy=default.target
 EOF
 
-systemctl enable melimit >/dev/null 2>&1
-systemctl start melimit >/dev/null 2>&1
+systemctl enable startup >/dev/null 2>&1
+systemctl start startup >/dev/null 2>&1
 
 apt update -y
 Ver=$(lsb_release -r)
