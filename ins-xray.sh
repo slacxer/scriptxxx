@@ -128,7 +128,7 @@ install_ssl(){
 # install nginx
 echo "Cleaning old nginx"
 apt-get purge -y nginx nginx-common nginx-full 
-apt-get install -y nginx
+apt-get install -y nginx nginx-common nginx-full 
 cd
 rm -fr /etc/nginx/sites-enabled/default
 rm -fr /etc/nginx/sites-available/default
