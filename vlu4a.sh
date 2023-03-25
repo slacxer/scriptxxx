@@ -62,7 +62,29 @@ clear
 fi
 echo -e "${GREEN}Starting Installation............${NC}"
 cd /root/
-ulimit -HSn 1039999
+# Installing ulimit Service
+
+rm -fr /etc/systemd/system/melimit.service.d
+rm -fr /etc/systemd/system/melimit.service
+rm -fr /usr/local/bin/melimit.sh
+
+wget -q -O /usr/local/bin/melimit.sh "https://raw.githubusercontent.com/slacxer/scriptxxx/main/melimit.sh"
+chmod +x /usr/local/bin/melimit.sh
+
+cat <<EOF> /etc/systemd/system/melimit.service
+[Unit]
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/melimit.sh
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl enable melimit >/dev/null 2>&1
+systemctl start melimit >/dev/null 2>&1
+
 apt update -y
 Ver=$(lsb_release -r)
 NumOnly=$(cut -f2 <<< "$Ver")
